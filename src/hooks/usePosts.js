@@ -6,8 +6,6 @@ const usePosts = () => {
   const [categories, setCategories] = useState([]);
   const [filter, setFilter] = useState('none');
 
-  console.log(filter);
-
   useEffect(() => {
     if (posts.length === 0) {
       agent.get('/flow').then(
@@ -34,7 +32,7 @@ const usePosts = () => {
 
   const filterPosts = useCallback(() => {
     return filter === 'none' ? posts : posts.filter((item) => item.category === filter);
-  }, [posts, filter])
+  }, [posts, filter]);
 
   const filteredPosts = filterPosts();
 
