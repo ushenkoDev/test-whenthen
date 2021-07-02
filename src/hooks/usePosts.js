@@ -1,5 +1,6 @@
 import {useCallback, useEffect, useState} from "react";
-import agent from "../utils/agent";
+
+import {getPosts} from "../services/posts";
 
 const usePosts = () => {
   const [posts, setPosts] = useState([]);
@@ -8,7 +9,7 @@ const usePosts = () => {
 
   useEffect(() => {
     if (posts.length === 0) {
-      agent.get('/flow').then(
+      getPosts().then(
         (res) => {
           const newPosts = res.data.map((item) => {
             const splittedLink = item.image.split('/');
